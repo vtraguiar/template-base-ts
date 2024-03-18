@@ -1,0 +1,11 @@
+Planejamento de desenvolvimento API
+
+Desenvolvimento de uma API de uma biblioteca ficticia. Inicialmente
+irei implementar dois models que irão partir de uma classe abstrata 
+em comum: Entity.
+
+Os models iniciais serão: Biblioteca e Usuários. A partir desses dois
+models mais genéricos, serão criados models mais especificos. A pri-
+meira coisa a ser decidida é se esses models mais genéricos serão
+utilizados diretamente ou se eles serão utilizados apenas para instan-
+ciação de models mais especificos.

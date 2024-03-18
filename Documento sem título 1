@@ -1,0 +1,23 @@
+Planejamento de desenvolvimento API
+
+Desenvolvimento de uma API de uma biblioteca ficticia. Inicialmente
+irei implementar dois models que irão partir de uma classe abstrata 
+em comum: Entity.
+
+Os models iniciais serão: Biblioteca e Usuários.
+
+O primeiro model a ser implementado será o model de usuário.
+
+
+User             						Book
+. Responsável por criar usuários				. Responsável por criar livros
+. Os usuários podem ser clientes 				. o livro terá as seguintes pro
+ou administradores do sistema					priedades:
+com permissão avançada						> ISBN
+								> Titulo
+o usuário terá as seguintes pro					> Autor
+priedades:							> Genero
+> id								> Ano de publicação
+> senha
+> nome
+> email					
