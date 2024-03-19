@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify'
 import { User } from '../domain/model/user'
 import { IUserService } from '../port/user.service.interface'
-import { Identifier } from '../../di/identifiers'
+import { Identifier } from 'di/identifiers'
 import { IUserRepository } from '../port/user.repository.interface'
 import { ConflictException } from '../domain/exception/conflict.exception'
 import { UserValidator } from '../domain/validator/user.validator'

@@ -6,6 +6,7 @@ export class User extends Entity implements ISerializable<User>{
     private username?: string
     private password?: string
     private email?: string
+    private created_at?: Date
 
     constructor(username?: string, password?: string, email?: string, id?: string) {
         super(id)
@@ -33,6 +34,14 @@ export class User extends Entity implements ISerializable<User>{
 
     public setEmail(value: string | undefined) {
         this.email = value
+    }
+
+    public getCreatedAt(): Date | undefined {
+        return this.created_at
+    }
+
+    public setCreatedAt(value: Date | undefined) {
+        this.created_at = value
     }
 
     public serialize(): any {

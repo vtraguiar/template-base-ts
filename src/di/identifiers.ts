@@ -10,13 +10,15 @@ export abstract class Identifier {
     public static readonly HOME_CONTROLLER: any = Symbol.for('HomeController')
 
     // Services
-
+    public static readonly USER_SERVICE: any = Symbol.for('UserService')
     // Repositories
 
     // Models
+    public static readonly USER_ENTITY: any = Symbol.for('UserEntity')
+    public static readonly USER_REPO_MODEL: any = Symbol.for('UserRepoModel')
 
     // Mappers
-
+    public static readonly USER_ENTITY_MAPPER: any = Symbol.for('UserEntityMapper')
     // Background Services
     public static readonly RABBITMQ_EVENT_BUS: any = Symbol.for('EventBusRabbitMQ')
     public static readonly RABBITMQ_CONNECTION_FACTORY: any = Symbol.for('RabbitMQConnectionFactory')
