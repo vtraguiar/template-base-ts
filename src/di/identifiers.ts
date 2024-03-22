@@ -11,7 +11,9 @@ export abstract class Identifier {
 
     // Services
     public static readonly USER_SERVICE: any = Symbol.for('UserService')
+    
     // Repositories
+    public static readonly USER_REPOSITORY: any = Symbol.for('UserRepository')
 
     // Models
     public static readonly USER_ENTITY: any = Symbol.for('UserEntity')

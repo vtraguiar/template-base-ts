@@ -14,6 +14,8 @@ import { IEventBus } from '../infrastructure/port/event.bus.interface'
 import { BackgroundService } from '../background/background.service'
 import { App } from '../app'
 import { CustomLogger, ILogger } from '../utils/custom.logger'
+import { IUserService } from 'application/port/user.service.interface'
+import { UserService } from 'application/service/user.service'
 
 export class DI {
     private static instance: DI
@@ -62,6 +64,7 @@ export class DI {
         this.container.bind<HomeController>(Identifier.HOME_CONTROLLER).to(HomeController).inSingletonScope()
 
         // Services
+        this.container.bind<IUserService>(Identifier.USER_SERVICE).to(UserService).inSingletonScope()
 
         // Repositories
 

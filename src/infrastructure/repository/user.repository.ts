@@ -8,6 +8,8 @@ import { IQuery } from 'application/port/query.interface'
 import { IEventBus } from 'infrastructure/port/event.bus.interface'
 import { ILogger } from 'utils/custom.logger'
 import { IEntityMapper } from 'infrastructure/entity/mapper/entity.mapper.interface'
+import { Query } from './query/query'
+import { UserSaveEvent } from 'application/integration-event/event/user.save.event'
 
 
 @injectable()
@@ -21,11 +23,36 @@ export class UserRepository extends BaseRepository<User, UserEntity> implements 
         super(userModel, userMapper, logger)
     }
 
-
-    getByEmail(email: string | number, query: IQuery): Promise<User> {
+    public create(item: User): Promise<User> {
+        const itemNew: UserEntity = this.mapper.transform(item)
+        return new Promise<User>((resolve, reject) => {
+            this.Model.create(itemNew)
+            .then(result => {
+                resolve(this.mapper.transform(result))
+                this.logger.info('Publish user on message bus...')
+                this._rabbitMQEventBus.publish(
+                    new UserSaveEvent('UserSaveEvent', new Date(), result),
+                    'users.save'
+                )
+            })
+            .catch(err => reject(super.mongoDBErrorListener(err)))
+        })
     }
 
-    checkExist(user: User): Promise<boolean> {
-     return true   
+
+    public async getByEmail(e: string, query: IQuery): Promise<User> {
+        query.filters = {email: e}
+        return super.findOne(query)
+    }
+
+    public checkExist(user: User): Promise<boolean> {
+     return new Promise<boolean>((resolve, reject) => {
+        const email: any = user.getEmail() ? user.getEmail() : ''
+        this.getByEmail(email, new Query())
+        .then((result: User) => {
+            if (result) return resolve(true)
+            return resolve(false)
+        }).catch(err => reject(super.mongoDBErrorListener(err)))
+     })
     }
 }
